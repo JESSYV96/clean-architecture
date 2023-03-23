@@ -1,0 +1,20 @@
+{
+  "name": "clean-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:react": "pnpm --filter @jessyv96/react dev",
+    "start:vue": "pnpm --filter @jessyv96/vue dev"
+  },
+  "devDependencies": {
+    "lerna": "^6.6.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/core/**",
+    "packages/infra/apps/*"
+  ]
+}
