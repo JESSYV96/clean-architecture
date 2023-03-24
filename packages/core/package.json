@@ -1,6 +1,7 @@
 {
+  "private": true,
   "name": "@jessyv96/core",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "description": "",
   "type": "module",
   "module": "./lib/index.js",
@@ -18,5 +19,5 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2"
   },
-  "gitHead": "d9cc4000c68a30ed455c1f5fdce09927d28cf233"
+  "gitHead": "8ebba34133fdd472455f4dadd5c769b65e9d4a88"
 }

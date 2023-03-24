@@ -1,7 +1,7 @@
 import { Todo } from "../domain/models/Todo.model";
 import { ITodoService } from "../domain/ports/services/todo-service.port";
 
-export const getTodos = async (todoService: ITodoService): Promise<Todo[]> => {
+export function getTodos(todoService?: ITodoService): Todo[] {
     return [
         {
             id: "1",
