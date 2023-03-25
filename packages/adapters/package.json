@@ -1,0 +1,23 @@
+{
+  "name": "@jessyv96/adapters",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "@jessyv96/core": "workspace:^0.1.0",
+    "axios": "^1.3.4"
+  }
+}

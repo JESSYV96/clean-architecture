@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build:all": "pnpm -r build",
-    "install:all": "pnpm -r install"
+    "install:all": "pnpm -r install",
+    "workspaces": "pnpm -r list"
   },
   "keywords": [],
   "author": "",

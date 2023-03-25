@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@jessyv96/adapters": "workspace:^1.0.0",
     "@jessyv96/core": "workspace:^0.1.0",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/node": "18.15.7",

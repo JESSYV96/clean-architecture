@@ -1,2 +1,2 @@
-export * from "./application"
+export * from "./usecases"
 export * from "./domain"

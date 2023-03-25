@@ -1,2 +1,2 @@
-export * from "./services"
-export * from "./stores"
+export * from "./server-side/services"
+export * from "./user-side/stores"
