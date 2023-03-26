@@ -1,1 +1,1 @@
-export * from "./TodoFromAPI"
+export * from "./TodoDTO"
