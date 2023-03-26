@@ -4,5 +4,3 @@ export type TodoDTO = {
     completed: boolean
     userId: number
 }
-
-export type TodoRequestDTO = Omit<TodoDTO, "id">

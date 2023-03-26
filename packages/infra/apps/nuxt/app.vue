@@ -30,7 +30,7 @@ const deleteTodoMutation = useMutation({
 
 <template>
   <main>
-
+    <h2>Nuxt</h2>
     <div v-for="todo in todos" :key="todo.id">{{ todo.title }}
       <div>
         Fait : <input type="checkbox" name="isTodoDone" :checked="todo.isDone" />

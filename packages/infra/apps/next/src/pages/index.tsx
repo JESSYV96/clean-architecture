@@ -31,6 +31,7 @@ export default function Home() {
   return (
     <>
       <main>
+        <h2>Next</h2>
         {todos && todos.map(todo => (
           <div key={todo.id}>{todo.title}
             <div>
