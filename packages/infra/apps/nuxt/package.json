@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@jessyv96/adapters": "workspace:^1.0.0",
-    "@jessyv96/core": "workspace:^0.1.0"
+    "@jessyv96/core": "workspace:^0.1.0",
+    "@tanstack/vue-query": "^4.27.0"
   },
   "devDependencies": {
     "@types/node": "^18.15.10",
