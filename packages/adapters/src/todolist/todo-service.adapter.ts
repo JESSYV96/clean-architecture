@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { ITodoService, Todo, TodoRequest } from "@jessyv96/core";
-import { type TodoDTO } from "./mappers/TodoDTO"
+import type { TodoDTO } from "./mappers/TodoDTO"
 
 export const todoListService = (): ITodoService => {
     const fetchTodos = async (): Promise<Todo[]> => {
@@ -17,17 +17,14 @@ export const todoListService = (): ITodoService => {
     }
 
     const createTodo = async (newTodo: TodoRequest): Promise<Todo> => {
-        const resp = axios.post<TodoDTO>("https://dummyjson.com/todos/add", {
-            todo: newTodo.title,
-            completed: false
+        const { data } = await axios.post<TodoDTO>("https://dummyjson.com/todos/add", {
+            todo: "Faire la vaiselle",
         })
 
-        console.log(resp)
-
         return {
-            id: 3432,
-            title: newTodo.title,
-            isDone: false,
+            id: data.id,
+            title: data.todo,
+            isDone: data.completed,
         }
     }
 

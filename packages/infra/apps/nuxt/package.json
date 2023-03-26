@@ -1,19 +1,21 @@
 {
   "name": "nuxt",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "@jessyv96/adapters": "workspace:^1.0.0",
+    "@jessyv96/core": "workspace:^0.1.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.15.3",
-    "@nuxt/typescript-build": "^2.1.0"
+    "@types/node": "^18.15.10",
+    "nuxt": "^3.3.2",
+    "typescript": "^5.0.2",
+    "vue-tsc": "^1.2.0"
   }
 }
