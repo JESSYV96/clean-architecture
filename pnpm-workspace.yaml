@@ -1,4 +1,4 @@
 packages:
   - "packages/core/**"
-  - "packages/adapters/**"
-  - "packages/infra/apps/*"
+  - "packages/infrastructure/**"
+  - "packages/ui/*"

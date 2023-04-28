@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build:modules": "pnpm --filter @jessyv96/core build && pnpm --filter @jessyv96/adapters build",
+    "build:modules": "pnpm --filter @jessyv96/core build && pnpm --filter @jessyv96/infrastructure build",
     "build:all": "pnpm -r build",
     "install:all": "pnpm -r install",
     "workspaces": "pnpm -r list"

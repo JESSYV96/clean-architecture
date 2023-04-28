@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2016",
     "moduleResolution": "node",
-    "declaration": true,
-    // "outFile": "./TEST.js",
+    "module": "ES6",
+    "declaration": true
   }
 }
