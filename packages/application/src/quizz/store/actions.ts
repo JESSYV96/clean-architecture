@@ -1,0 +1,19 @@
+import { goToNextQuestion, initQuestion, initQuizz } from "../usecases";
+import { selectAnswer } from "../usecases/game/SelectAnswer";
+import { selectQuestion } from "../usecases/game/SelectQuestion";
+import { shuffleAnswers } from "../usecases/game/SuffleAnswers";
+import { validateAnswer } from "../usecases/game/ValidateAnswer";
+// SETTINGS
+import { selectDifficulty, selectEffect } from "../usecases/settings";
+
+export default {
+    selectAnswer,
+    selectQuestion,
+    shuffleAnswers,
+    validateAnswer,
+    initQuizz,
+    selectDifficulty,
+    selectEffect,
+    initQuestion,
+    goToNextQuestion
+}

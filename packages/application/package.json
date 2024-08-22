@@ -1,0 +1,25 @@
+{
+  "name": "@jessy/application",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@jessy/domain": "workspace:*",
+    "@reduxjs/toolkit": "^2.2.7"
+  },
+  "devDependencies": {
+    "tsup": "^8.2.4",
+    "typescript": "^5"
+  }
+}
