@@ -8,6 +8,7 @@ export type QuizzState = {
     game: {
         score: number
         questions: Question[]
+        isQuizLoading: boolean
         currentQuestion: {
             index: number,
             question: Question | null
@@ -25,6 +26,7 @@ export type QuizzState = {
 export const initialState: QuizzState = {
     game: {
         questions: [],
+        isQuizLoading: false,
         currentQuestion: {
             index: 0,
             question: null
@@ -48,6 +50,11 @@ export const quizzSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getQuestions.fulfilled, (state, action) => {
             state.game.questions = action.payload
+            state.game.isQuizLoading = false
+            return state;
+        })
+        builder.addCase(getQuestions.pending, (state, action) => {
+            state.game.isQuizLoading = true
             return state;
         })
     }

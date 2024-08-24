@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm dev",
+    "test": "vitest",
     "build": "pnpm  --filter './packages/*' run build"
   },
   "keywords": [],

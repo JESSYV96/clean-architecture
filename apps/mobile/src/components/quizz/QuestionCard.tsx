@@ -10,6 +10,7 @@ import { appActions, appSelectors } from '@jessy/application'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { useAppDispatch } from '../../configs/store'
 import { Answer } from '@jessy/domain'
+import { decodeHtmlEntities } from '../../utils/helpers'
 
 const QuestionCard = () => {
 
@@ -38,7 +39,7 @@ const QuestionCard = () => {
   return (
     <View style={styles.questionCard}>
       <View style={styles.questionContainer}>
-        {currentQuestion && <AppText color='black'>{currentQuestion.label}</AppText>}
+        {currentQuestion && <AppText color='black'>{decodeHtmlEntities(currentQuestion.label)}</AppText>}
       </View>
       <View style={{ flex: 1 }}>
         {answers && answers.length && answers.map((answer, index) => (
@@ -49,7 +50,6 @@ const QuestionCard = () => {
             shouldCheckAnswer={shouldCheckAnswer(answer)}
           />
         ))}
-        <Text>{selectedAnswer}</Text>
         {!hasAnsweredQuestion
           ? <AppButton
             disabled={!Boolean(selectedAnswer)}

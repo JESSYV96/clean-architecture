@@ -5,6 +5,7 @@ import type { QuizzState } from "../../store/slice";
 export function validateAnswer(state: QuizzState, action: PayloadAction<Answer>) {
     const questionAnswer = state.game.currentQuestion.question.correctAnswer;
     state.game.hasAnswered = true;
+
     // answering
     if (questionAnswer === action.payload) {
         state.game.score += 10

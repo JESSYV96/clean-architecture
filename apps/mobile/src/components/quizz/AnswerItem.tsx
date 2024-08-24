@@ -1,16 +1,16 @@
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { StyleSheet, Text } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import Themes from '../../constants/Themes';
 import { appActions, appSelectors } from "@jessy/application";
 import { useAppDispatch } from "../../configs/store";
 import { useSelector } from "react-redux";
+import { decodeHtmlEntities } from "../../utils/helpers";
 
 interface AnswerItemProps {
     text: string
     letter: string
     shouldCheckAnswer: boolean
-    isR?: boolean
 }
 
 const AnswerItem = ({ letter, text, shouldCheckAnswer }: AnswerItemProps) => {
@@ -19,25 +19,25 @@ const AnswerItem = ({ letter, text, shouldCheckAnswer }: AnswerItemProps) => {
     const { hasAnsweredSelector, currentQuestionSelector } = appSelectors
 
     const hasAnsweredQuestion = useSelector(hasAnsweredSelector);
-    const c = useSelector(currentQuestionSelector);
-    const isR = (text: string): boolean => {
-        return c.correctAnswer === text
+    const currentQuestion = useSelector(currentQuestionSelector);
+
+    const isRightAnswer = (text: string): boolean => {
+        return currentQuestion.correctAnswer === text
     }
 
     return (
         <BouncyCheckbox
             size={16}
-            onPress={() => {
-                dispatch(selectAnswer(text))
-            }}
-            disabled={shouldCheckAnswer}
+            onPress={() => dispatch(selectAnswer(text))}
+            disabled={shouldCheckAnswer || hasAnsweredQuestion}
+            iconStyle={{ display: "none" }}
             textComponent={<>
-                <Text style={{ ...answerStyle(shouldCheckAnswer).answerText, fontSize: 10 }}>{text}</Text>
+                <View></View>
+                <Text style={{ ...answerStyle(shouldCheckAnswer).answerText, fontSize: 10 }}>{decodeHtmlEntities(text)}</Text>
                 <Text style={{ ...answerStyle(shouldCheckAnswer).answerText, fontSize: 13 }}>{letter}</Text>
             </>}
             isChecked={shouldCheckAnswer}
-            innerIconStyle={answerStyle(shouldCheckAnswer,).icon}
-            style={answerStyle(shouldCheckAnswer, hasAnsweredQuestion, isR(text)).answer}
+            style={answerStyle(shouldCheckAnswer, hasAnsweredQuestion, isRightAnswer(text)).answer}
         />
     )
 }
@@ -84,10 +84,6 @@ const answerStyle = (isChecked: boolean, hasAnswered?: boolean, isRightAnswer?: 
         answerText: {
             textAlign: "center",
             color: "#000000"
-        },
-        icon: {
-            borderColor: isChecked ? Themes.colors.primary : Themes.colors.gray,
-            backgroundColor: isChecked ? Themes.colors.primary : "transparent"
         }
     })
 }
