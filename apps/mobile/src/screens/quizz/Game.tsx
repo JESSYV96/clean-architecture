@@ -50,11 +50,8 @@ const QuizzScreen = ({ navigation }: QuizzScreenProps) => {
             dispatch(shuffleAnswers({ randomNumber: Math.random() }));
         }
         return () => {
-            console.log("will unmount")
             dispatch(selectAnswer(null))
             dispatch(initQuestion(false))
-            // Do something when the screen is unfocused
-            // Useful for cleanup functions
         }
     }, [questions, currentQuestionIndex]);
     return (

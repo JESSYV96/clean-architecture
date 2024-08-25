@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import JokerItem from './JokerItem'
 import AppButton from '../themes/buttons/Button'
@@ -18,20 +18,20 @@ const QuestionCard = () => {
     currentQuestionSelector,
     answersSelector,
     selectedAnswerSelector,
-    hasAnsweredSelector
+    hasAnsweredSelector,
+    skipQuestionJokerSelector
   } = appSelectors
 
-  const { validateAnswer, goToNextQuestion } = appActions;
+  const { validateAnswer, goToNextQuestion, skipQuestion } = appActions;
 
   const answers = useSelector(answersSelector);
   const currentQuestion = useSelector(currentQuestionSelector);
   const selectedAnswer = useSelector(selectedAnswerSelector);
   const hasAnsweredQuestion = useSelector(hasAnsweredSelector);
-
+  const skipQuestionJoker = useSelector(skipQuestionJokerSelector);
 
   const dispatch = useAppDispatch();
 
-  // usecase ??
   const shouldCheckAnswer = (answer: Answer) => {
     return selectedAnswer === answer;
   }
@@ -64,12 +64,20 @@ const QuestionCard = () => {
           </AppButton>
         }
 
-
       </View>
       <View style={styles.jokersContainer}>
-        <JokerItem label="50/50" icon={<MaterialIcons name="question-answer" size={22} color="inherit" />} onPress={() => { }} />
-        <JokerItem label="Passer" icon={<MaterialIcons name="keyboard-double-arrow-right" size={24} color="inherit" />
-        } onPress={() => { }} />
+        <JokerItem
+          label="50/50"
+          icon={<MaterialIcons name="question-answer" size={22} color="inherit" />}
+          onPress={() => alert("Comming soon !")} />
+        <JokerItem
+          label="Passer"
+          icon={<MaterialIcons name="keyboard-double-arrow-right" size={24} color="inherit" />}
+          onPress={() => {
+            dispatch(skipQuestion())
+          }} />
+        <pre>{skipQuestionJoker.remaining}</pre>
+        <pre>{skipQuestionJoker.error}</pre>
       </View>
     </View>
   )

@@ -1,3 +1,4 @@
+import { Errors } from "../enums";
 import { Difficulty } from "../enums/Difficulty"
 
 export type Answer = string;
@@ -9,5 +10,10 @@ export type Question = {
     theme: string
     incorrectAnswers: Answer[]
     correctAnswer: Answer
+}
+
+export type Joker = {
+    remaining: number,
+    error: Errors
 }
 

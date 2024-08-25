@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Answer, Difficulty, Effect, Question } from "@jessy/domain"
+import { Answer, Difficulty, Effect, Errors, Joker, Question } from "@jessy/domain"
 import { getQuestions } from "../usecases/game/GetQuestions";
 import selectors from "./selectors";
 import actions from "./actions";
@@ -15,7 +15,11 @@ export type QuizzState = {
         }
         currentAnswers: string[]
         selectedAnswer: Answer | null
-        hasAnswered: boolean
+        hasAnswered: boolean,
+        jokers: {
+            skipQuestion: Joker,
+            fiftyFifty: Joker
+        }
     }
     settings: {
         difficulty: Difficulty
@@ -35,6 +39,16 @@ export const initialState: QuizzState = {
         selectedAnswer: null,
         hasAnswered: false,
         score: 0,
+        jokers: {
+            skipQuestion: {
+                remaining: 1,
+                error: null
+            },
+            fiftyFifty: {
+                remaining: 1,
+                error: null
+            }
+        }
     },
     settings: {
         difficulty: Difficulty.None,
@@ -59,5 +73,6 @@ export const quizzSlice = createSlice({
         })
     }
 })
+
 export const appSelectors = quizzSlice.selectors;
 export const appActions = quizzSlice.actions;
