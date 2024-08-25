@@ -22,7 +22,7 @@ const QuestionCard = () => {
     skipQuestionJokerSelector
   } = appSelectors
 
-  const { validateAnswer, goToNextQuestion, skipQuestion } = appActions;
+  const { validateAnswer, goToNextQuestion, skipQuestion, removeIncorrectAnswers } = appActions;
 
   const answers = useSelector(answersSelector);
   const currentQuestion = useSelector(currentQuestionSelector);
@@ -69,7 +69,7 @@ const QuestionCard = () => {
         <JokerItem
           label="50/50"
           icon={<MaterialIcons name="question-answer" size={22} color="inherit" />}
-          onPress={() => alert("Comming soon !")} />
+          onPress={() => dispatch(removeIncorrectAnswers({ question: currentQuestion, randomNumber: Math.random() }))} />
         <JokerItem
           label="Passer"
           icon={<MaterialIcons name="keyboard-double-arrow-right" size={24} color="inherit" />}

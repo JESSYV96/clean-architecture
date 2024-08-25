@@ -1,3 +1,6 @@
+import * as Rtk from '@reduxjs/toolkit';
+import { quizzSlice } from './quizz/store/slice';
+import { QuizzPort } from '@jessy/domain';
 export interface QuizzService {
   quizzService: QuizzPort
 }

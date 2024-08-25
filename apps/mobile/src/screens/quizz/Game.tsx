@@ -21,12 +21,14 @@ const QuizzScreen = ({ navigation }: QuizzScreenProps) => {
         difficultySelector,
         totalQuestionSelector,
         currentQuestionIndexSelector,
+        answersSelector,
         isEndOfQuizzSelector
     } = appSelectors
 
     const { selectQuestion, shuffleAnswers, selectAnswer, initQuestion } = appActions;
 
     const questions = useSelector(questionsSelector);
+    const answers = useSelector(answersSelector);
     const score = useSelector(scoreSelector);
     const currentQuestionIndex = useSelector(currentQuestionIndexSelector);
     const totalQuestion = useSelector(totalQuestionSelector);

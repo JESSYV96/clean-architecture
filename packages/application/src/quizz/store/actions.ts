@@ -1,4 +1,4 @@
-import { goToNextQuestion, initQuestion, initQuizz } from "../usecases";
+import { goToNextQuestion, initQuestion, initQuizz, removeIncorrectAnswers } from "../usecases";
 import { selectAnswer } from "../usecases/game/SelectAnswer";
 import { selectQuestion } from "../usecases/game/SelectQuestion";
 import { skipQuestion } from "../usecases/game/SkipQuestion";
@@ -18,5 +18,6 @@ export default {
     selectEffect,
     initQuestion,
     goToNextQuestion,
-    skipQuestion
+    skipQuestion,
+    removeIncorrectAnswers
 }
