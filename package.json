@@ -4,9 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "pnpm dev",
+    "dev": "pnpm -F mobile run dev",
     "test": "vitest",
-    "build": "pnpm  --filter './packages/*' run build"
+    "build": "pnpm -F '@jessy/domain' run build && pnpm -F '@jessy/application' run build && pnpm -F '@jessy/infrastructure' run build"
   },
   "keywords": [],
   "author": "",

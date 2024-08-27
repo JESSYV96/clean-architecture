@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, FlatList, Text } from 'react-native'
 import React, { useState } from 'react'
 import JokerItem from './JokerItem'
 import AppButton from '../themes/buttons/Button'
@@ -10,74 +10,71 @@ import { appActions, appSelectors } from '@jessy/application'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { useAppDispatch } from '../../configs/store'
 import { Answer } from '@jessy/domain'
-import { decodeHtmlEntities } from '../../utils/helpers'
 
 const QuestionCard = () => {
+  const { currentQuestionSelector, answersSelector, selectedAnswerSelector, hasAnsweredSelector } =
+    appSelectors
 
-  const {
-    currentQuestionSelector,
-    answersSelector,
-    selectedAnswerSelector,
-    hasAnsweredSelector,
-    skipQuestionJokerSelector
-  } = appSelectors
+  const { validateAnswer, goToNextQuestion, skipQuestion, removeIncorrectAnswers } = appActions
 
-  const { validateAnswer, goToNextQuestion, skipQuestion, removeIncorrectAnswers } = appActions;
+  const answers = useSelector(answersSelector)
+  const currentQuestion = useSelector(currentQuestionSelector)
+  const selectedAnswer = useSelector(selectedAnswerSelector)
+  const hasAnsweredQuestion = useSelector(hasAnsweredSelector)
 
-  const answers = useSelector(answersSelector);
-  const currentQuestion = useSelector(currentQuestionSelector);
-  const selectedAnswer = useSelector(selectedAnswerSelector);
-  const hasAnsweredQuestion = useSelector(hasAnsweredSelector);
-  const skipQuestionJoker = useSelector(skipQuestionJokerSelector);
-
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const shouldCheckAnswer = (answer: Answer) => {
-    return selectedAnswer === answer;
+    return selectedAnswer === answer
   }
 
   return (
     <View style={styles.questionCard}>
       <View style={styles.questionContainer}>
-        {currentQuestion && <AppText color='black'>{decodeHtmlEntities(currentQuestion.label)}</AppText>}
+        {currentQuestion && <AppText color="black">{currentQuestion.label}</AppText>}
       </View>
       <View style={{ flex: 1 }}>
-        {answers && answers.length && answers.map((answer, index) => (
-          <AnswerItem
-            key={index}
-            text={answer}
-            letter={String.fromCharCode(65 + index)}
-            shouldCheckAnswer={shouldCheckAnswer(answer)}
-          />
-        ))}
-        {!hasAnsweredQuestion
-          ? <AppButton
+        <FlatList
+          data={answers}
+          renderItem={({ item, index }) => (
+            <AnswerItem
+              text={item}
+              letter={String.fromCharCode(65 + index)}
+              shouldCheckAnswer={shouldCheckAnswer(item)}
+            />
+          )}
+        />
+        {!hasAnsweredQuestion ? (
+          <AppButton
             disabled={!Boolean(selectedAnswer)}
             onPress={() => dispatch(validateAnswer(selectedAnswer))}
-            color={Themes.colors.primary}>
-            <AppText color='white'>Valider</AppText>
+            color={Themes.colors.primary}
+          >
+            <AppText color="white">Valider</AppText>
           </AppButton>
-          : <AppButton
-            onPress={() => dispatch(goToNextQuestion())}
-            color={Themes.colors.primary}>
-            <AppText color='white'>Suivant</AppText>
+        ) : (
+          <AppButton onPress={() => dispatch(goToNextQuestion())} color={Themes.colors.primary}>
+            <AppText color="white">Suivant</AppText>
           </AppButton>
-        }
-
+        )}
       </View>
       <View style={styles.jokersContainer}>
         <JokerItem
           label="50/50"
           icon={<MaterialIcons name="question-answer" size={22} color="inherit" />}
-          onPress={() => dispatch(removeIncorrectAnswers({ question: currentQuestion, randomNumber: Math.random() }))} />
+          onPress={() =>
+            dispatch(
+              removeIncorrectAnswers({ question: currentQuestion, randomNumber: Math.random() })
+            )
+          }
+        />
         <JokerItem
           label="Passer"
           icon={<MaterialIcons name="keyboard-double-arrow-right" size={24} color="inherit" />}
           onPress={() => {
             dispatch(skipQuestion())
-          }} />
-        <pre>{skipQuestionJoker.remaining}</pre>
-        <pre>{skipQuestionJoker.error}</pre>
+          }}
+        />
       </View>
     </View>
   )
@@ -86,16 +83,16 @@ const QuestionCard = () => {
 export default QuestionCard
 const styles = StyleSheet.create({
   questionCard: {
-    height: "80%",
+    height: '80%',
     backgroundColor: '#E4EFE6',
     borderRadius: 5,
     marginVertical: 25,
-    padding: 20,
+    padding: 20
   },
   questionContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     height: 150,
     marginVertical: 10,
     padding: 20,
@@ -103,8 +100,8 @@ const styles = StyleSheet.create({
     backgroundColor: Themes.colors.background
   },
   jokersContainer: {
-    display: "flex",
+    display: 'flex',
     flexDirection: 'row',
     gap: Themes.spacing.sm
-  },
+  }
 })

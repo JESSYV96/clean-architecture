@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import Themes from '../constants/Themes';
-import DefautLayout from '../layouts/DefautLayout';
-import AppText from '../components/themes/Text';
-import AppButton from '../components/themes/buttons/Button';
-import CircularButton from '../components/themes/buttons/CircularButton';
+import { StyleSheet, Text, View } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import Themes from '../constants/Themes'
+import DefautLayout from '../layouts/DefautLayout'
+import AppText from '../components/themes/Text'
+import AppButton from '../components/themes/buttons/Button'
+import CircularButton from '../components/themes/buttons/CircularButton'
 
 interface HomeScreenProps {
   navigation: any // Need to find navigation type
@@ -36,33 +36,33 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
 const styles = StyleSheet.create({
   header: {
-    display: "flex",
-    alignItems: "flex-end",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
     marginTop: 15
   },
   title: {
-    textAlign: "center",
-    fontFamily: "Lemon-Milk",
+    textAlign: 'center',
+    fontFamily: 'Lemon-Milk',
     fontSize: 32,
     color: Themes.colors.primary
   },
   subtitle: {
-    textAlign: "center",
-    fontFamily: "Lemon-Milk",
-    fontSize: 16,
+    textAlign: 'center',
+    fontFamily: 'Lemon-Milk',
+    fontSize: 16
   },
   body: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'column',
     flex: 1,
     gap: 12
   },
   footer: {
     marginBottom: 20
-  },
-});
+  }
+})
 
 export default HomeScreen

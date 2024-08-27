@@ -1,22 +1,16 @@
-import { PropsWithChildren } from "react"
-import { View, StyleSheet } from "react-native"
-
+import { PropsWithChildren } from 'react'
+import { StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 function DefautLayout({ children }: PropsWithChildren) {
-    return (
-        <View style={styles.layout}>
-            {children}
-        </View>
-    )
+  return <SafeAreaView style={styles.layout}>{children}</SafeAreaView>
 }
 
 const styles = StyleSheet.create({
-    layout: {
-        flex: 1,
-        paddingHorizontal: 16,
-        height: "100%"
-    },
-});
-
+  layout: {
+    flex: 1,
+    paddingHorizontal: 16
+  }
+})
 
 export default DefautLayout

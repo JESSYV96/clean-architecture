@@ -1,6 +1,6 @@
-import { initialState, QuizzState } from "../../store";
+import { PayloadAction } from '@reduxjs/toolkit'
+import { QuizzState, initialState } from '../../type'
 
-export function initQuizz(state: QuizzState) {
-    state.game = { ...initialState.game }
-    return state
+export function initQuizz(state: QuizzState, action: PayloadAction<undefined>) {
+  state.game = { ...initialState.game }
 }
