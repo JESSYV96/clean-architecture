@@ -1,1 +1,1 @@
-export * from "./QuizzPort"
+export * from './QuizzPort'

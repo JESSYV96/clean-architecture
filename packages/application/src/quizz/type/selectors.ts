@@ -25,11 +25,11 @@ const scoreSelector = (state: QuizzState): number => {
   return state.game.score
 }
 
-const answersSelector = (state: QuizzState): string[] => {
+const answersSelector = (state: QuizzState): Answer[] => {
   return state.game.currentAnswers
 }
 
-const selectedAnswerSelector = (state: QuizzState): string => {
+const selectedAnswerSelector = (state: QuizzState): Answer => {
   return state.game.selectedAnswer
 }
 

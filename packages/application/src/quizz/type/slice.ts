@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Answer, Difficulty, Effect, Errors, Joker, Question } from '@jessy/domain'
+import { Answer, Difficulty, Effect, Errors, Joker, Question, Room } from '@jessy/domain'
 import { getQuestions } from '../usecases/game/GetQuestions'
 import selectors from './selectors'
+import multiplayerSelectors from '../selectors/multiplayer'
 import { selectDifficulty, selectEffect } from '../usecases/settings'
 import {
   selectQuestionMode,
@@ -14,7 +15,16 @@ import {
   skipQuestion,
   validateAnswer
 } from '../usecases/game'
+import { QuizDependencies } from '../../store'
+import { createRoom } from '../usecases/multiplayer/CreateRoom'
+import { getActiveRooms, joinRoom } from '../usecases'
+import { userConnectedListener } from '../listeners'
 
+export interface ThunkApi {
+  extra: {
+    services: QuizDependencies
+  }
+}
 export type QuizzState = {
   game: {
     score: number
@@ -31,6 +41,10 @@ export type QuizzState = {
       skipQuestion: Joker
       fiftyFifty: Joker
     }
+  }
+  multiplayer: {
+    room: Room | null
+    activeRooms: Room[]
   }
   settings: {
     difficulty: Difficulty
@@ -61,6 +75,10 @@ export const initialState: QuizzState = {
       }
     }
   },
+  multiplayer: {
+    room: null,
+    activeRooms: []
+  },
   settings: {
     difficulty: Difficulty.None,
     effect: Effect.None
@@ -70,7 +88,10 @@ export const initialState: QuizzState = {
 export const quizzSlice = createSlice({
   name: 'quizz',
   initialState,
-  selectors,
+  selectors: {
+    ...selectors,
+    ...multiplayerSelectors
+  },
   reducers: {
     selectAnswer,
     selectQuestion,
@@ -134,6 +155,19 @@ export const quizzSlice = createSlice({
     builder.addCase(getQuestions.pending, (state, action) => {
       state.game.isQuizLoading = true
       return state
+    })
+    builder.addCase(createRoom.fulfilled, (state, action) => {
+      state.multiplayer.room = { ...action.payload }
+    })
+    builder.addCase(getActiveRooms.fulfilled, (state, action) => {
+      state.multiplayer.activeRooms = [...action.payload]
+    })
+    builder.addCase(joinRoom.fulfilled, (state, action) => {
+      state.multiplayer.room = action.payload
+    })
+    builder.addCase(userConnectedListener.fulfilled, (state, action) => {
+      console.log(action.payload, 'userConnectedListener')
+      // state.multiplayer.room = action.payload
     })
   }
 })

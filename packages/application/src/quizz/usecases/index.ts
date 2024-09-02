@@ -1,2 +1,3 @@
-export * from "./game"
-export * from "./settings"
+export * from './game'
+export * from './multiplayer'
+export * from './settings'

@@ -1,1 +1,2 @@
-export * from "./quizz"
+export * from './quizz'
+export * from './multiplayer'

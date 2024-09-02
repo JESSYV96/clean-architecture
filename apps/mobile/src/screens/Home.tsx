@@ -26,8 +26,11 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         <AppButton onPress={() => navigation.replace('Quizz')} color={Themes.colors.primary}>
           <AppText color="white">Jouer</AppText>
         </AppButton>
-        <AppButton color={Themes.colors.secondary}>
-          <AppText color="white">Proposer une question</AppText>
+        <AppButton
+          onPress={() => navigation.replace('MultiplayerHome')}
+          color={Themes.colors.secondary}
+        >
+          <AppText color="white">Multijoueur</AppText>
         </AppButton>
       </View>
     </DefautLayout>
